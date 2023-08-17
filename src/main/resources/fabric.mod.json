@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "nbtify",
+  "version": "${version}",
+  "name": "NBTify",
+  "description": "A mod that allows you to view NBT data of a hovered Item, and also copy it to clipboard. with a click of a button.",
+  "authors": [
+    "Wondermine",
+    "LetsChill"
+  ],
+  "contact": {
+    "website": "https://github.com/LetsChill/NBTify",
+    "repo": "https://github.com/LetsChill/NBTify",
+    "issues": "https://github.com/LetsChill/NBTify"
+  },
+  "license": "MIT",
+  "icon": "assets/nbtify/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [],
+    "main": [
+      "io.letschill.nbtify.Nbtify"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
