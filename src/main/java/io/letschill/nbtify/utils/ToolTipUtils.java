@@ -40,13 +40,16 @@ public class ToolTipUtils {
     public static String Colorize(String string) {
 
         return string
-                .replaceAll(" \"", ToolTipUtils.Color("red").toString() + "\"")
-                .replaceAll(":§c", "§f:§a ")
+                .replaceAll("\": ", ToolTipUtils.Color("red").toString() + "\"§f:§a ")
+                .replaceAll("(?<!\\S) \"", ToolTipUtils.Color("red").toString() + "\"")
                 .replaceAll("\\{", ToolTipUtils.Color("white") + "\\{")
                 .replaceAll("}", ToolTipUtils.Color("white") + "}")
                 .replaceAll("\\[", ToolTipUtils.Color("white") + "\\[")
                 .replaceAll("]", ToolTipUtils.Color("white") + "]")
-                .replaceAll(",", ToolTipUtils.Color("white") + ",");
+
+                .replaceAll("},", "}" + ToolTipUtils.Color("white") + ",")
+                .replaceAll("],", "]" + ToolTipUtils.Color("white") + ",")
+                .replaceAll("\",", "\"" + ToolTipUtils.Color("white") + ",");
     }
 
     public static ChatFormatting Color(String color) {

@@ -9,10 +9,13 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class NBTScreen extends Screen {
     private static Screen lastScreen;
     public static String jsonNBT;
-    private int yPos;
+    private static int yPos;
 
     public NBTScreen(Screen lastScreen, String jsonNBT) {
         super(Component.literal(""));
@@ -61,7 +64,7 @@ public class NBTScreen extends Screen {
         int k=0;
         for (String line: ToolTipUtils.Colorize(jsonNBT).lines().toList()) {
 
-            int y = 25 + (10 * k) - this.yPos;
+            int y = 25 + (10 * k) - yPos;
 
             if (y <= 18 || y >= this.height - 18) {
                 k++;
@@ -73,7 +76,7 @@ public class NBTScreen extends Screen {
         }
     }
 
-    protected long getOffscreenRows() {
+    protected static long getOffscreenRows() {
         if (jsonNBT.lines().count() < 47) {
             return 0;
         }
@@ -82,13 +85,28 @@ public class NBTScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double d, double e, double f) {
-        this.yPos = (int) Mth.clamp((int) (yPos - (f * 13)), 0, this.getOffscreenRows());
+        yPos = (int) Mth.clamp((int) (yPos - (f * 10)), 0, getOffscreenRows());
+
+        Timer time = new Timer();
+        final int[] runCount = {0};
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                NBTScreen.yPos = (int) Mth.clamp((int) (yPos - (f * 5)), 0, NBTScreen.getOffscreenRows());
+                runCount[0]++;
+
+                if (runCount[0] > 5) this.cancel();
+            }
+        };
+
+        time.schedule(task, 0, 50);
+
         return true;
     }
 
     @Override
     public boolean mouseDragged(double d, double e, int f, double g, double h) {
-        this.yPos = (int) Mth.clamp(yPos - (h * 2), 0, this.getOffscreenRows());
+        yPos = (int) Mth.clamp(yPos - (h * 2), 0, getOffscreenRows());
         return true;
     }
 }
