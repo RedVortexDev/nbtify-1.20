@@ -1,6 +1,6 @@
 # NBTIFY Mod
 
-<a href="https://modrinth.com/mod/fabric-api" target="_blank"><img src="https://i.imgur.com/Ol1Tcf8.png" width="180"></a>
+<a href="https://modrinth.com/mod/fabric-api" target="_blank"><img src="https://i.imgur.com/Ol1Tcf8.png" title="Fabric API required." width="180"/></a>
 
 Want to visualize your NBT data and grab it with ease? NBTIFY does the job!
 
@@ -18,6 +18,6 @@ You can press `ALT` to have a preview of the NBT data.
 
 You can press `CONTROL` to copy the data in JSON format.
 
-You can press `SHIFT+ALT` to open the screen GUI and preview the whole NBT data that the item have.
+You can press `TAB` to open the screen GUI and preview the whole NBT data that the item have.
 
 The mod is also client side only, nothing to be bothered about!

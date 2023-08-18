@@ -1,5 +1,6 @@
 package io.letschill.nbtify.callback;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import io.letschill.nbtify.screens.NBTScreen;
 import io.letschill.nbtify.utils.ToolTipUtils;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -27,9 +28,7 @@ public final class NBTCallBack implements ItemTooltipCallback {
         if (stack.getTag() == null) {
             return;
         }
-
-        if (Screen.hasShiftDown() && Screen.hasAltDown()) {
-
+        if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 258)) {
             lines.add(Component.empty());
             getGuide(lines);
 
@@ -90,7 +89,7 @@ public final class NBTCallBack implements ItemTooltipCallback {
 
         Component control = Component.literal("Control").withStyle(ChatFormatting.UNDERLINE);
 
-        Component shiftAndAlt = Component.literal("Shit & alt").withStyle(ChatFormatting.UNDERLINE);
+        Component tab = Component.literal("Tab").withStyle(ChatFormatting.UNDERLINE);
 
         lines.add(Component.literal("Press ").append(alt).append(" to view NBT data")
                 .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
@@ -100,7 +99,7 @@ public final class NBTCallBack implements ItemTooltipCallback {
                 .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
 
         lines.add(Component.empty());
-        lines.add(Component.literal("Press ").append(shiftAndAlt).append(" To open NBT Screen.")
+        lines.add(Component.literal("Press ").append(tab).append(" To open NBT Screen.")
                 .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }
