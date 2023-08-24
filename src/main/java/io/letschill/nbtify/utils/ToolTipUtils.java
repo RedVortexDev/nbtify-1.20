@@ -38,18 +38,81 @@ public class ToolTipUtils {
     }
 
     public static String Colorize(String string) {
+        StringBuilder naw = new StringBuilder();
 
-        return string
-                .replaceAll("\": ", ToolTipUtils.Color("red").toString() + "\"§f:§a ")
-                .replaceAll("(?<!\\S) \"", ToolTipUtils.Color("red").toString() + "\"")
-                .replaceAll("\\{", ToolTipUtils.Color("white") + "\\{")
-                .replaceAll("}", ToolTipUtils.Color("white") + "}")
-                .replaceAll("\\[", ToolTipUtils.Color("white") + "\\[")
-                .replaceAll("]", ToolTipUtils.Color("white") + "]")
+        for (String line: string.lines().toList()) {
+            // stage one.
+            Pattern p = Pattern.compile("\"(.*)\": \"(.*)\"");
+            Matcher m = p.matcher(line);
+            boolean flag = false;
 
-                .replaceAll("},", "}" + ToolTipUtils.Color("white") + ",")
-                .replaceAll("],", "]" + ToolTipUtils.Color("white") + ",")
-                .replaceAll("\",", "\"" + ToolTipUtils.Color("white") + ",");
+            while (m.find()) {
+                flag = true;
+                naw.append(line.replace(
+                        m.group(0),
+                        Color("red") + "\"" + m.group(1) + "\"" + Color("white") + ": " + Color("green") + "\"" + m.group(2) + "\"" + Color("white")
+                )).append("\n");
+            }
+
+            if (flag) {
+                continue;
+            }
+
+            // stage two.
+            p = Pattern.compile("\"(.*)\": \\{");
+            m = p.matcher(line);
+
+
+            while (m.find()) {
+                flag = true;
+
+                naw.append(line.replace(
+                        m.group(0),
+                        Color("red") + "\"" +  m.group(1) + "\"" + Color("white") + ": {"
+                )).append("\n");
+            }
+
+            if (flag) {
+                continue;
+            }
+
+            // stage three.
+            p = Pattern.compile("\"(.*)\": \\[");
+            m = p.matcher(line);
+
+            while (m.find()) {
+                flag = true;
+
+                naw.append(line.replace(
+                        m.group(0),
+                        Color("red") + "\"" +  m.group(1) + "\"" + Color("white") + ": ["
+                )).append("\n");
+            }
+
+            if (flag) {
+                continue;
+            }
+
+            // stage four.
+            p = Pattern.compile("\"(.*)\": (\\d+|\\w+)(.*)");
+            m = p.matcher(line);
+
+            while (m.find()) {
+                flag = true;
+                naw.append(line.replace(
+                        m.group(0),
+                        Color("red") + "\"" + m.group(1) + "\"" + Color("white") + ": " + Color("gold") + m.group(2) + Color("white") + m.group(3)
+                )).append("\n");
+            }
+
+            if (flag) {
+                continue;
+            }
+
+            naw.append(line).append("\n");
+        }
+
+        return naw.toString();
     }
 
     public static ChatFormatting Color(String color) {

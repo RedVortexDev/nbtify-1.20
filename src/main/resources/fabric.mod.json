@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "nbtify",
   "version": "${version}",
-  "name": "NBTify",
+  "name": "NBTIFY",
   "description": "A mod that allows you to view NBT data of a hovered Item, and also copy it to clipboard. with a click of a button.",
   "authors": [
     "Wondermine",

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class Nbtify implements ModInitializer {
 
-    public static final String MODID = "advancedmodtooltip";
+    public static final String MODID = "nbtify";
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MODID);

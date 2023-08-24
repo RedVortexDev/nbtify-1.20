@@ -21,7 +21,7 @@ public class NBTScreen extends Screen {
         super(Component.literal(""));
 
         NBTScreen.lastScreen = lastScreen;
-        NBTScreen.jsonNBT = jsonNBT;
+        NBTScreen.jsonNBT = ToolTipUtils.Colorize(jsonNBT);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class NBTScreen extends Screen {
         super.render(guiGraphics, i, j, f);
 
         int k=0;
-        for (String line: ToolTipUtils.Colorize(jsonNBT).lines().toList()) {
+        for (String line: jsonNBT.lines().toList()) {
 
             int y = 25 + (10 * k) - yPos;
 
@@ -76,23 +76,16 @@ public class NBTScreen extends Screen {
         }
     }
 
-    protected static long getOffscreenRows() {
-        if (jsonNBT.lines().count() < 47) {
-            return 0;
-        }
-        return jsonNBT.lines().count() * 8;
-    }
-
     @Override
     public boolean mouseScrolled(double d, double e, double f) {
-        yPos = (int) Mth.clamp((int) (yPos - (f * 10)), 0, getOffscreenRows());
+        yPos = Mth.clamp((int) (yPos - (f * 10)), 0, 9999);
 
         Timer time = new Timer();
         final int[] runCount = {0};
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                NBTScreen.yPos = (int) Mth.clamp((int) (yPos - (f * 5)), 0, NBTScreen.getOffscreenRows());
+                NBTScreen.yPos = Mth.clamp((int) (yPos - (f * 5)), 0, 9999);
                 runCount[0]++;
 
                 if (runCount[0] > 5) this.cancel();
@@ -106,7 +99,7 @@ public class NBTScreen extends Screen {
 
     @Override
     public boolean mouseDragged(double d, double e, int f, double g, double h) {
-        yPos = (int) Mth.clamp(yPos - (h * 2), 0, getOffscreenRows());
+        yPos = Mth.clamp((int) (yPos - (h * 2)), 0, 9999);
         return true;
     }
 }
