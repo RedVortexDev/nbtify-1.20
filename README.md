@@ -1,8 +1,13 @@
-# NBTIFY Mod
+<div align=center>
+<h1>
+  NBTIFY Mod
+  <br/>
+  <a href="https://modrinth.com/mod/fabric-api" target="_blank"><img src="https://i.imgur.com/Ol1Tcf8.png" title="Requires FabricAPI" width="90"/></a>
+</h1>
 
-<a href="https://modrinth.com/mod/fabric-api" target="_blank"><img src="https://i.imgur.com/Ol1Tcf8.png" title="Fabric API required." width="80"/></a>
+</div>
 
-NBTIFY is a client-side mod to preview and copy item lore in any container and gamemode.
+**NBTIFY** is a client-side mod to preview and copy item lore in any container and gamemode.
 
 ## How to use
 
