@@ -14,4 +14,5 @@ You can press `CONTROL` to copy the data in JSON format.
 
 You can press `TAB` to open the screen GUI and preview the whole NBT data that the item have.
 
-Fork removes the guide appended to all items and adds a workflow.
+## Fork
+This fork removes the guide appended to all items and adds a workflow.
