@@ -30,7 +30,6 @@ public final class NBTCallBack implements ItemTooltipCallback {
         }
         if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), 258)) {
             lines.add(Component.empty());
-            getGuide(lines);
 
             String string = ToolTipUtils.format(stack);
             Minecraft.getInstance().setScreen(new NBTScreen(
@@ -68,13 +67,11 @@ public final class NBTCallBack implements ItemTooltipCallback {
                 );
 
                 lines.add(Component.empty());
-                getGuide(lines);
 
                 flag = true;
                 return;
             }
             lines.add(Component.empty());
-            getGuide(lines);
             return;
         }
 
