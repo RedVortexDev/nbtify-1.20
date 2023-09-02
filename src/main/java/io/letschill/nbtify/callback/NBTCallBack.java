@@ -81,25 +81,5 @@ public final class NBTCallBack implements ItemTooltipCallback {
         flag = false;
 
         lines.add(Component.empty());
-        getGuide(lines);
-    }
-
-    private static void getGuide(List<Component> lines) {
-        Component alt = Component.literal("Alt").withStyle(ChatFormatting.UNDERLINE);
-
-        Component control = Component.literal("Control").withStyle(ChatFormatting.UNDERLINE);
-
-        Component tab = Component.literal("Tab").withStyle(ChatFormatting.UNDERLINE);
-
-        lines.add(Component.literal("Press ").append(alt).append(" to view NBT data")
-                .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        lines.add(Component.empty());
-
-        lines.add(Component.literal("Press ").append(control).append(" to copy NBT data.")
-                .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-
-        lines.add(Component.empty());
-        lines.add(Component.literal("Press ").append(tab).append(" To open NBT Screen.")
-                .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }
