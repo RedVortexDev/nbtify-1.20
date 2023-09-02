@@ -43,6 +43,8 @@ public final class NBTCallBack implements ItemTooltipCallback {
 
             String string = ToolTipUtils.Colorize(Objects.requireNonNull(ToolTipUtils.format(stack)));
 
+            lines.add(Component.empty());
+
             for (String line: string.lines().toList()) {
                 lines.add(Component.literal(line));
             }
@@ -66,17 +68,12 @@ public final class NBTCallBack implements ItemTooltipCallback {
                         Component.literal("Your NBT data has been copied!")
                 );
 
-                lines.add(Component.empty());
-
                 flag = true;
                 return;
             }
-            lines.add(Component.empty());
             return;
         }
 
         flag = false;
-
-        lines.add(Component.empty());
     }
 }
